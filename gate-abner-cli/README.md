@@ -1,4 +1,4 @@
-# GATE Abener Tagger Command Line Interface
+# GATE Abner Tagger Command Line Interface
 
 The project provides an executable jar file that can process single files or can be used to recursively process directories of files.
 
