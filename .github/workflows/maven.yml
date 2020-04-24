@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ master,develop ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
 jobs:
   build:
@@ -20,5 +20,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Build Core
+      run: cd gate-core && mvn -B install --file pom.xml
+    - name: Build Abner
+      run: cd gate-abner && mvn -B install --file pom.xml
+    - name: Build Abner CLI
+      run: cd gate-abner-cli && mvn -B package --file pom.xml
