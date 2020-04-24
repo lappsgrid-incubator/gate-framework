@@ -16,7 +16,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 /**
- *
+ * Use the AbstractGateAnalyzer to expose a single GATE processing resource.
  */
 public class AbstractGateAnalyzer extends BaseGateService
 {

@@ -41,7 +41,7 @@ public class FileLoader {
 			case cord:
 				return loadCord(file);
 			default:
-				throw new UnsupportedOperationException("Loading TCF/XML files is not supported at this time.");
+				throw new UnsupportedOperationException("Unsupported.");
 		}
 	}
 

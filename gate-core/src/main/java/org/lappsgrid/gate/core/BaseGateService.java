@@ -12,7 +12,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 
 /**
+ * The BaseGateService class is responsible for initializing the GATE system and ensuring it is
+ * only initialized once.  The class expects GATE Embedded and will look in the following locations:
  *
+ * 1. The path specified by the system environment variable GATE_HOME
+ * 2. The path specified by the Java system property GATE_HOME
+ * 3. /usr/local/gate
+ * 4. /home/gate
+ * 5. /gate
  */
 public class BaseGateService
 {

@@ -13,50 +13,33 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- *
+ * Use the AbstractGateController to expose a GATE corpus controller pipeline that has been bundled as a sinlge
+ * *.gapp by GATE.
  */
 public class AbstractGateController extends BaseGateService
 {
-	public static final String PATH_KEY = "GATE_TIMEML_PATH";
 	protected Corpus corpus;
 	protected CorpusController controller;
 
 	public AbstractGateController(String path, Class<? extends AbstractGateController> baseClass) throws GateCoreException
 	{
 		super(baseClass);
-		File timeml = new File(path);
-		if (!timeml.exists() && !timeml.isFile()) {
-			throw new GateCoreException("Invalid GAPP file path.");
+		File app = new File(path);
+		if (!app.exists() && !app.isFile()) {
+			throw new GateCoreException("Invalid file path.");
 		}
 		try
 		{
-			corpus = Factory.newCorpus("timeml");
-			controller = (CorpusController) PersistenceManager.loadObjectFromFile(timeml);
+			corpus = Factory.newCorpus("gate-temp-corpus");
+			controller = (CorpusController) PersistenceManager.loadObjectFromFile(app);
 		}
 		catch (ResourceInstantiationException | PersistenceException | IOException e)
 		{
-			logger.error("Unable to initialize TimeML", e);
-			throw new GateCoreException("Unable to initialize TimeML", e);
+			logger.error("Unable to initialize GATE application", e);
+			throw new GateCoreException("Unable to initialize GATE application", e);
 		}
 		controller.setCorpus(corpus);
 
-	}
-
-	private File findGappFile() {
-		String[] locations = {
-				System.getenv(PATH_KEY),
-				System.getProperty(PATH_KEY),
-				"/usr/local/timeml/application.xgapp",
-				"/home/timeml/application.xgapp",
-				"/application.xgapp"
-		};
-		for (String path : locations) {
-			File file = check(path);
-			if (file != null) {
-				return file;
-			}
-		}
-		return null;
 	}
 
 	public void execute(Document document) throws GateCoreException
@@ -68,7 +51,7 @@ public class AbstractGateController extends BaseGateService
 		}
 		catch (ExecutionException e)
 		{
-			String msg = "Error running the TimeML controller.";
+			String msg = "Error running the GATE controller.";
 			logger.error(msg, e);
 			throw new GateCoreException(msg, e);
 
