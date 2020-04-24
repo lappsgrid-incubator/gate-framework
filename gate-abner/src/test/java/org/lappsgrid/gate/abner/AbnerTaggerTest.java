@@ -3,6 +3,7 @@ package org.lappsgrid.gate.abner;
 import gate.Document;
 import gate.util.GateException;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.lappsgrid.gate.core.GateCoreException;
 
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- */
+ */@Ignore
 public class AbnerTaggerTest
 {
 	@BeforeClass

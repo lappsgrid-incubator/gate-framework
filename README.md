@@ -2,6 +2,7 @@
 
 This project contains a number of modules for exposing GATE processing resources as services that produces LIF output.
 
+![Java CI with Maven](https://github.com/lappsgrid-incubator/gate-framework/workflows/Java%20CI%20with%20Maven/badge.svg)
 
 ## Modules
 
